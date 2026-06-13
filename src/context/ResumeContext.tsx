@@ -2,6 +2,12 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 type ResumeData = {
   targetRole: string;
+
+  fullName: string;
+  email: string;
+  phone: string;
+  linkedin: string;
+  github: string;
 };
 
 type ResumeContextType = {
@@ -13,8 +19,14 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
   const [resumeData, setResumeData] = useState<ResumeData>({
-    targetRole: "",
-  });
+  targetRole: "",
+
+  fullName: "",
+  email: "",
+  phone: "",
+  linkedin: "",
+  github: "",
+});
 
   const updateResumeData = (data: Partial<ResumeData>) => {
     setResumeData((prev) => ({
