@@ -1,5 +1,13 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+type Education = {
+  degree: string;
+  institution: string;
+  cgpa: string;
+  startYear: string;
+  graduationYear: string;
+};
+
 type ResumeData = {
   targetRole: string;
 
@@ -8,6 +16,8 @@ type ResumeData = {
   phone: string;
   linkedin: string;
   github: string;
+
+  education: Education[];
 };
 
 type ResumeContextType = {
@@ -26,6 +36,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   phone: "",
   linkedin: "",
   github: "",
+  education: [],
 });
 
   const updateResumeData = (data: Partial<ResumeData>) => {
