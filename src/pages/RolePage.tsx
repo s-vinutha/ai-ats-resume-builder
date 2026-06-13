@@ -1,14 +1,25 @@
 import { useForm } from "react-hook-form";
 
+import { useResume } from "../context/ResumeContext";
+
 type RoleFormData = {
   targetRole: string;
 };
 
 export default function RolePage() {
-  const { register, handleSubmit } = useForm<RoleFormData>();
+  const { resumeData, updateResumeData } = useResume();
+
+  const { register, handleSubmit } =
+    useForm<RoleFormData>({
+      defaultValues: {
+        targetRole: resumeData.targetRole,
+      },
+    });
 
   const onSubmit = (data: RoleFormData) => {
-    console.log("Role Data:", data);
+    updateResumeData(data);
+
+    console.log("Updated Resume:", data);
   };
 
   return (
@@ -26,15 +37,19 @@ export default function RolePage() {
         className="w-full border rounded p-2 mb-4"
       >
         <option value="">Select a role</option>
+
         <option value="Software Engineer">
           Software Engineer
         </option>
+
         <option value="Data Analyst">
           Data Analyst
         </option>
+
         <option value="Machine Learning Engineer">
           Machine Learning Engineer
         </option>
+
         <option value="Frontend Developer">
           Frontend Developer
         </option>
