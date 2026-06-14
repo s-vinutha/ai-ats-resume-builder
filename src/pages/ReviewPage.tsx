@@ -1,7 +1,9 @@
 import { useResume } from "../context/ResumeContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ReviewPage() {
   const { resumeData } = useResume();
+  const navigate = useNavigate();
 
   return (
     <div className="space-y-8">
@@ -186,6 +188,17 @@ export default function ReviewPage() {
           <p>No skills added.</p>
         )}
       </section>
+
+    <div className="flex justify-end">
+      <button
+      onClick={() => navigate("/preview")}
+      className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
+      >
+        Generate Resume Preview
+       </button>
     </div>
+  </div>
+    
   );
+  
 }
