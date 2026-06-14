@@ -28,6 +28,7 @@ type ResumeData = {
 
   education: Education[];
   projects: Project[];
+  skills: string[];
 };
 
 type ResumeContextType = {
@@ -48,6 +49,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   github: "",
   education: [],
   projects: [],
+  skills: [],
 });
 
   const updateResumeData = (data: Partial<ResumeData>) => {
