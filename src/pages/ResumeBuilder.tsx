@@ -8,6 +8,7 @@ import EducationPage from "./EducationPage";
 import ProjectsPage from "./ProjectsPage";
 import SkillsPage from "./SkillsPage";
 import ReviewPage from "./ReviewPage";
+import TemplatePage from "./TemplatePage";
 
 export default function ResumeBuilder() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -18,7 +19,9 @@ export default function ResumeBuilder() {
     <EducationPage />,
     <ProjectsPage />,
     <SkillsPage />,
+    <TemplatePage />,
     <ReviewPage />,
+  
   ];
 
   return (

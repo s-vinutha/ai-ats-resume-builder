@@ -35,6 +35,8 @@ type ResumeData = {
   education: Education[];
   projects: Project[];
   skills: string[];
+
+  selectedTemplate: string;
 };
 
 type ResumeContextType = {
@@ -58,6 +60,8 @@ const initialResumeData: ResumeData = {
   education: [],
   projects: [],
   skills: [],
+  selectedTemplate: "classic",
+  
 };
 
 export function ResumeProvider({
@@ -72,7 +76,10 @@ export function ResumeProvider({
 
       if (savedData) {
         try {
-          return JSON.parse(savedData);
+          return {
+            ...initialResumeData,
+            ...JSON.parse(savedData),
+          };
         } catch (error) {
           console.error(
             "Failed to parse saved resume data:",

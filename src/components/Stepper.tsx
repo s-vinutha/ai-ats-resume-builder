@@ -8,6 +8,7 @@ const steps = [
   "Education",
   "Projects",
   "Skills",
+  "Template",
   "Review",
 ];
 

@@ -197,6 +197,13 @@ export default function ReviewPage() {
         Generate Resume Preview
        </button>
     </div>
+    <section className="border rounded-lg p-4">
+  <h3 className="text-xl font-semibold mb-2">
+    Selected Template
+  </h3>
+
+  <p>{resumeData.selectedTemplate}</p>
+</section>
   </div>
     
   );
