@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 type Education = {
   degree: string;
@@ -36,10 +42,11 @@ type ResumeContextType = {
   updateResumeData: (data: Partial<ResumeData>) => void;
 };
 
-const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
+const ResumeContext = createContext<
+  ResumeContextType | undefined
+>(undefined);
 
-export function ResumeProvider({ children }: { children: ReactNode }) {
-  const [resumeData, setResumeData] = useState<ResumeData>({
+const initialResumeData: ResumeData = {
   targetRole: "",
 
   fullName: "",
@@ -47,21 +54,60 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   phone: "",
   linkedin: "",
   github: "",
+
   education: [],
   projects: [],
   skills: [],
-});
+};
 
-  const updateResumeData = (data: Partial<ResumeData>) => {
+export function ResumeProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [resumeData, setResumeData] =
+    useState<ResumeData>(() => {
+      const savedData =
+        localStorage.getItem("resumeData");
+
+      if (savedData) {
+        try {
+          return JSON.parse(savedData);
+        } catch (error) {
+          console.error(
+            "Failed to parse saved resume data:",
+            error
+          );
+
+          return initialResumeData;
+        }
+      }
+
+      return initialResumeData;
+    });
+
+  const updateResumeData = (
+    data: Partial<ResumeData>
+  ) => {
     setResumeData((prev) => ({
       ...prev,
       ...data,
     }));
   };
 
+  useEffect(() => {
+    localStorage.setItem(
+      "resumeData",
+      JSON.stringify(resumeData)
+    );
+  }, [resumeData]);
+
   return (
     <ResumeContext.Provider
-      value={{ resumeData, updateResumeData }}
+      value={{
+        resumeData,
+        updateResumeData,
+      }}
     >
       {children}
     </ResumeContext.Provider>

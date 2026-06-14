@@ -1,4 +1,7 @@
 import { useResume } from "../context/ResumeContext";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import ResumePDF from "../components/ResumePDF";
+
 
 export default function ResumePreviewPage() {
   const { resumeData } = useResume();
@@ -132,6 +135,24 @@ export default function ResumePreviewPage() {
           </section>
         )}
       </div>
+      <div className="mt-8 flex justify-end">
+  <PDFDownloadLink
+    document={
+      <ResumePDF
+        resumeData={resumeData}
+      />
+    }
+    fileName="resume.pdf"
+  >
+    {({ loading }) => (
+      <button className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700">
+        {loading
+          ? "Preparing PDF..."
+          : "Download PDF"}
+      </button>
+    )}
+     </PDFDownloadLink>
+    </div>
     </div>
   );
 }
