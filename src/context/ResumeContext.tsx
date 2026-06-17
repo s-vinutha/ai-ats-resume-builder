@@ -23,6 +23,13 @@ type Project = {
   liveDemoLink: string;
 };
 
+type Certification = {
+  name: string;
+  organization: string;
+  issueDate: string;
+  credentialUrl: string;
+};
+
 type ResumeData = {
   targetRole: string;
 
@@ -35,7 +42,7 @@ type ResumeData = {
   education: Education[];
   projects: Project[];
   skills: string[];
-
+  certifications: Certification[];
   selectedTemplate: string;
 };
 
@@ -61,7 +68,7 @@ const initialResumeData: ResumeData = {
   projects: [],
   skills: [],
   selectedTemplate: "classic",
-  
+  certifications: [],
 };
 
 export function ResumeProvider({

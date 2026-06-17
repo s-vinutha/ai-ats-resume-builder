@@ -9,6 +9,7 @@ import ProjectsPage from "./ProjectsPage";
 import SkillsPage from "./SkillsPage";
 import ReviewPage from "./ReviewPage";
 import TemplatePage from "./TemplatePage";
+import CertificationsPage from "./CertificationsPage";
 
 export default function ResumeBuilder() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -19,6 +20,7 @@ export default function ResumeBuilder() {
     <EducationPage />,
     <ProjectsPage />,
     <SkillsPage />,
+    <CertificationsPage />,
     <TemplatePage />,
     <ReviewPage />,
   

@@ -1,15 +1,44 @@
 import { useResume } from "../context/ResumeContext";
 import { useNavigate } from "react-router-dom";
+import { calculateATSScore } from "../utils/atsScore";
 
 export default function ReviewPage() {
   const { resumeData } = useResume();
   const navigate = useNavigate();
+
+  const { score, suggestions } =
+    calculateATSScore(resumeData);
 
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-semibold">
         Review Your Resume Information
       </h2>
+      <section className="border rounded-lg p-4 bg-green-50">
+  <h3 className="text-xl font-semibold mb-2">
+    ATS Score
+  </h3>
+
+  <p className="text-3xl font-bold">
+    {score}/100
+  </p>
+
+  {suggestions.length > 0 && (
+    <div className="mt-4">
+      <h4 className="font-semibold mb-2">
+        Suggestions
+      </h4>
+
+      <ul className="list-disc list-inside space-y-1">
+        {suggestions.map((suggestion, index) => (
+          <li key={index}>
+            {suggestion}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</section>
 
       {/* Role */}
       <section className="border rounded-lg p-4">
